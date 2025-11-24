@@ -1,0 +1,216 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "62111d39e1909edde58acdbd80aff71d",
+    "entities": [
+      {
+        "tableName": "media",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `query` TEXT NOT NULL, `mediaType` TEXT NOT NULL, `pageUrl` TEXT NOT NULL, `tags` TEXT NOT NULL, `views` INTEGER NOT NULL, `downloads` INTEGER NOT NULL, `likes` INTEGER NOT NULL, `comments` INTEGER NOT NULL, `userId` INTEGER NOT NULL, `userName` TEXT NOT NULL, `userImageUrl` TEXT NOT NULL, `duration` INTEGER, `videoFilesJson` TEXT, `previewUrl` TEXT, `previewWidth` INTEGER, `previewHeight` INTEGER, `webformatUrl` TEXT, `webformatWidth` INTEGER, `webformatHeight` INTEGER, `largeImageUrl` TEXT, `imageWidth` INTEGER, `imageHeight` INTEGER, `imageSize` INTEGER, `page` INTEGER NOT NULL, `insertedAt` INTEGER NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "query",
+            "columnName": "query",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mediaType",
+            "columnName": "mediaType",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "pageUrl",
+            "columnName": "pageUrl",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "tags",
+            "columnName": "tags",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "views",
+            "columnName": "views",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "downloads",
+            "columnName": "downloads",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "likes",
+            "columnName": "likes",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "comments",
+            "columnName": "comments",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "userId",
+            "columnName": "userId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "userName",
+            "columnName": "userName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "userImageUrl",
+            "columnName": "userImageUrl",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "duration",
+            "columnName": "duration",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "videoFilesJson",
+            "columnName": "videoFilesJson",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "previewUrl",
+            "columnName": "previewUrl",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "previewWidth",
+            "columnName": "previewWidth",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "previewHeight",
+            "columnName": "previewHeight",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "webformatUrl",
+            "columnName": "webformatUrl",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "webformatWidth",
+            "columnName": "webformatWidth",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "webformatHeight",
+            "columnName": "webformatHeight",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "largeImageUrl",
+            "columnName": "largeImageUrl",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "imageWidth",
+            "columnName": "imageWidth",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "imageHeight",
+            "columnName": "imageHeight",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "imageSize",
+            "columnName": "imageSize",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "page",
+            "columnName": "page",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "insertedAt",
+            "columnName": "insertedAt",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "media_key",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`query` TEXT NOT NULL, `prevPage` INTEGER, `nextPage` INTEGER, PRIMARY KEY(`query`))",
+        "fields": [
+          {
+            "fieldPath": "query",
+            "columnName": "query",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "prevPage",
+            "columnName": "prevPage",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "nextPage",
+            "columnName": "nextPage",
+            "affinity": "INTEGER",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "query"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '62111d39e1909edde58acdbd80aff71d')"
+    ]
+  }
+}

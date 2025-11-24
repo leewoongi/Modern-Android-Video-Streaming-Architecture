@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Search Bar -->
+    <string name="search_placeholder">検索</string>
+    <string name="search_clear_description">検索テキストをクリア</string>
+    <string name="search_icon_description">検索</string>
+</resources>

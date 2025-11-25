@@ -49,4 +49,10 @@ class MediaRepositoryImpl
             entities.map { it.toDomain() }
         }
     }
+
+    override fun getById(mediaId: Long): Flow<Media?> {
+        return localDataSource.getById(mediaId).map { entity ->
+            entity?.toDomain()
+        }
+    }
 }

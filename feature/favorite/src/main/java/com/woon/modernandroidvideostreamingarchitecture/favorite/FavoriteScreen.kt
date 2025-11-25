@@ -18,11 +18,12 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.woon.modernandroidvideostreamingarchitecture.core.R
 import com.woon.modernandroidvideostreamingarchitecture.core.design.component.datacase.EmptyDataCase
+import com.woon.modernandroidvideostreamingarchitecture.core.localprovider.LocalNavController
 import com.woon.modernandroidvideostreamingarchitecture.favorite.intent.FavoriteIntent
 import com.woon.modernandroidvideostreamingarchitecture.favorite.model.FavoriteUiState
 import com.woon.modernandroidvideostreamingarchitecture.favorite.screen.error.ErrorScreen
 import com.woon.modernandroidvideostreamingarchitecture.favorite.screen.loading.LoadingScreen
-import com.woon.modernandroidvideostreamingarchitecture.favorite.screen.success.FavoriteSearchScreen
+import com.woon.modernandroidvideostreamingarchitecture.favorite.screen.success.layout.FavoriteSearchScreen
 import com.woon.modernandroidvideostreamingarchitecture.favorite.screen.success.SuccessScreen
 
 @Composable
@@ -31,6 +32,7 @@ fun FavoriteScreen(
 ) {
     val viewModel = hiltViewModel<FavoriteViewModel>()
     val gridState = rememberLazyGridState()
+    val navController = LocalNavController.current
 
     val query by viewModel.query.collectAsStateWithLifecycle()
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
@@ -73,7 +75,9 @@ fun FavoriteScreen(
                     item = media,
                     modifier = Modifier.fillMaxSize(),
                     state = gridState,
-                    onClick = { viewModel.processIntent(FavoriteIntent.OnClickFavorite(it)) },
+                    onClickItem = { mediaItem ->
+                        navController.navigate("detail/${mediaItem.id}/${mediaItem.type}")
+                    },
                     onFavoriteClick = { viewModel.processIntent(FavoriteIntent.OnClickFavorite(it)) }
                 )
             }

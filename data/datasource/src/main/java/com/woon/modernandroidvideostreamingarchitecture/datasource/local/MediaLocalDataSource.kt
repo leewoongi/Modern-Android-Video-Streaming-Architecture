@@ -53,7 +53,7 @@ class MediaLocalDataSource
     /**
      * ID로 Media 조회
      */
-    suspend fun getById(mediaId: Long): MediaEntity? {
+    fun getById(mediaId: Long): Flow<MediaEntity?> {
         return mediaDao.getById(mediaId)
     }
 

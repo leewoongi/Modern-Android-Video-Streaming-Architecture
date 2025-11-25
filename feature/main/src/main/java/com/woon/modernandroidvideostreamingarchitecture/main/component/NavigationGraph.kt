@@ -1,5 +1,7 @@
 package com.woon.modernandroidvideostreamingarchitecture.main.component
 
+import androidx.compose.animation.EnterTransition
+import androidx.compose.animation.ExitTransition
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
@@ -9,6 +11,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.woon.modernandroidvideostreamingarchitecture.core.localprovider.LocalNavController
+import com.woon.modernandroidvideostreamingarchitecture.detail.DetailScreen
 import com.woon.modernandroidvideostreamingarchitecture.favorite.FavoriteScreen
 import com.woon.modernandroidvideostreamingarchitecture.home.HomeScreen
 
@@ -23,7 +26,11 @@ fun NavigationGraph(
         NavHost(
             navController = navController,
             startDestination = "home",
-            modifier = modifier
+            modifier = modifier,
+            enterTransition = { EnterTransition.None },
+            exitTransition = { ExitTransition.None },
+            popEnterTransition = { EnterTransition.None },
+            popExitTransition = { ExitTransition.None }
         ) {
             composable(
                 route = "home"
@@ -46,10 +53,10 @@ fun NavigationGraph(
             ) { backStackEntry ->
                 val id = backStackEntry.arguments?.getLong("id") ?: 0L
                 val type = backStackEntry.arguments?.getString("type") ?: ""
-//                DetailScreen(
-//                    id = id,
-//                    type = type
-//                )
+                DetailScreen(
+                    id = id,
+                    type = type
+                )
             }
         }
     }

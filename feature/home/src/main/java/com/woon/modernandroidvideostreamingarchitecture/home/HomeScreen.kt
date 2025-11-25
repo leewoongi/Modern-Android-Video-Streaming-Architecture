@@ -21,6 +21,7 @@ import com.woon.modernandroidvideostreamingarchitecture.core.design.component.da
 import com.woon.modernandroidvideostreamingarchitecture.core.design.component.datacase.ErrorDataCase
 import com.woon.modernandroidvideostreamingarchitecture.core.design.component.datacase.LoadingDataCase
 import com.woon.modernandroidvideostreamingarchitecture.core.design.component.paging.PagingRefreshStateItem
+import com.woon.modernandroidvideostreamingarchitecture.core.localprovider.LocalNavController
 import com.woon.modernandroidvideostreamingarchitecture.home.intent.HomeIntent
 import com.woon.modernandroidvideostreamingarchitecture.home.screen.HomeMediaListScreen
 import com.woon.modernandroidvideostreamingarchitecture.home.screen.HomeSearchScreen
@@ -31,6 +32,7 @@ fun HomeScreen(
 ) {
     val viewModel = hiltViewModel<HomeViewModel>()
     val gridState = rememberLazyGridState()
+    val navController = LocalNavController.current
 
     val query by viewModel.query.collectAsStateWithLifecycle()
     val media = viewModel.media.collectAsLazyPagingItems()
@@ -61,7 +63,7 @@ fun HomeScreen(
                 HomeMediaListScreen(
                     media = items,
                     state = gridState,
-                    onClickItem = { /**디테일 화면 이동*/ },
+                    onClickItem = { mediaItem -> navController.navigate("detail/${mediaItem.id}/${mediaItem.type}") },
                     onFavoriteClick = { viewModel.processIntent(HomeIntent.OnClickFavorite(it)) }
                 )
             }

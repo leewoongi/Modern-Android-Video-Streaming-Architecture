@@ -9,13 +9,20 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
-class FavoriteRepositoryImpl @Inject constructor(
+class FavoriteRepositoryImpl
+@Inject constructor(
     private val localDataSource: FavoriteLocalDataSource
 ) : FavoriteRepository {
 
     override fun get(): Flow<List<Favorite>> {
         return localDataSource.getAllFavorites().map { entities ->
             entities.map { it.toDomain() }
+        }
+    }
+
+    override fun getById(mediaId: Long): Flow<Favorite?> {
+        return localDataSource.getById(mediaId).map { entity ->
+            entity?.toDomain()
         }
     }
 

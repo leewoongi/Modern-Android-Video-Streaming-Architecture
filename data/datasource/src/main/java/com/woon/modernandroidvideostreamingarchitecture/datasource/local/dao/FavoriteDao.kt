@@ -19,6 +19,9 @@ interface FavoriteDao {
     @Query("SELECT * FROM favorites ORDER BY insertedAt ASC")
     fun getAllFavorites(): Flow<List<FavoriteEntity>>
 
+    @Query("SELECT * FROM favorites WHERE mediaId = :mediaId")
+    fun getById(mediaId: Long): Flow<FavoriteEntity?>
+
     @Query("SELECT EXISTS(SELECT 1 FROM favorites WHERE mediaId = :mediaId)")
     fun isFavorite(mediaId: Long): Flow<Boolean>
 

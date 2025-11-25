@@ -12,8 +12,11 @@ class FavoriteLocalDataSource @Inject constructor(
         return database.favoriteDao().getAllFavorites()
     }
 
+    fun getById(mediaId: Long): Flow<FavoriteEntity?> {
+        return database.favoriteDao().getById(mediaId)
+    }
+
     suspend fun insert(favorite: FavoriteEntity) {
-        println("TEST TEST TEST insert favorite: $favorite")
         database.favoriteDao().insert(favorite)
     }
 

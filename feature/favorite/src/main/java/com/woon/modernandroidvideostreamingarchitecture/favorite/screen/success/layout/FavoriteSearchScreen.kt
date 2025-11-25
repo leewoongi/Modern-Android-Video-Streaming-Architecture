@@ -1,4 +1,4 @@
-package com.woon.modernandroidvideostreamingarchitecture.favorite.screen.success
+package com.woon.modernandroidvideostreamingarchitecture.favorite.screen.success.layout
 
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height

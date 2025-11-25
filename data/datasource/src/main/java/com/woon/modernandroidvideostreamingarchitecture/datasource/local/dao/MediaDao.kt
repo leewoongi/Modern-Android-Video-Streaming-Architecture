@@ -45,5 +45,5 @@ interface MediaDao {
      * 특정 ID의 미디어 조회
      */
     @Query("SELECT * FROM media WHERE id = :mediaId")
-    suspend fun getById(mediaId: Long): MediaEntity?
+    fun getById(mediaId: Long): Flow<MediaEntity?>
 }

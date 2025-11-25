@@ -1,7 +1,6 @@
 package com.woon.modernandroidvideostreamingarchitecture.datasource.remote
 
 import com.woon.modernandroidvideostreamingarchitecture.datasource.remote.api.PixabayApiService
-import com.woon.modernandroidvideostreamingarchitecture.datasource.remote.mapper.toDomain
 import com.woon.modernandroidvideostreamingarchitecture.domain.media.model.Media
 import javax.inject.Inject
 
@@ -20,7 +19,7 @@ class MediaRemoteDataSource
             query = query,
             page = page
         )
-        return response.toDomain()
+        return response.toVideoList()
     }
 
     /**
@@ -32,6 +31,6 @@ class MediaRemoteDataSource
             query = query,
             page = page
         )
-        return response.toDomain()
+        return response.toImageList()
     }
 }

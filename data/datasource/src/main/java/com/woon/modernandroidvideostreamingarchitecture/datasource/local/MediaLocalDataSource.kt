@@ -14,9 +14,6 @@ class MediaLocalDataSource
     private val mediaDao = database.mediaDao()
     private val remoteKeyDao = database.mediaRemoteKeysDao()
 
-    /**Database 인스턴스 제공 (RemoteMediator에서 사용)*/
-    fun getDatabase(): AppDatabase = database
-
     /**
      * PagingSource 제공
      */

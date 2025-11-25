@@ -28,7 +28,7 @@ import com.woon.modernandroidvideostreamingarchitecture.home.screen.HomeSearchSc
 @Composable
 fun HomeScreen(
 
-){
+) {
     val viewmodel = hiltViewModel<HomeViewModel>()
     val gridState = rememberLazyGridState()
 
@@ -61,7 +61,9 @@ fun HomeScreen(
             successContent = { items ->
                 HomeMediaListScreen(
                     media = items,
-                    state = gridState
+                    state = gridState,
+                    onClickItem = { /**디테일 화면 이동*/ },
+                    onFavoriteClick = { viewmodel.processIntent(HomeIntent.OnClickFavorite(it)) }
                 )
             }
         )

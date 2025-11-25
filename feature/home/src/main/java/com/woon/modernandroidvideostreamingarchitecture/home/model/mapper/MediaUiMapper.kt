@@ -6,7 +6,9 @@ import com.woon.modernandroidvideostreamingarchitecture.domain.media.model.Media
 import com.woon.modernandroidvideostreamingarchitecture.domain.video.model.Video
 import com.woon.modernandroidvideostreamingarchitecture.home.model.MediaUiModel
 
-internal fun Media.toUiModel(): MediaUiModel {
+internal fun Media.toUiModel(
+    isFavorite: Boolean
+): MediaUiModel {
     return when (this) {
         is Video -> MediaUiModel(
             id = id,
@@ -16,7 +18,7 @@ internal fun Media.toUiModel(): MediaUiModel {
                 ?: videos.large?.thumbnail
                 ?: videos.tiny?.thumbnail
                 ?: "",
-            isFavorite = false,
+            isFavorite = isFavorite,
             videoUrl = videos.medium?.url
                 ?: videos.small?.url
                 ?: videos.large?.url
@@ -27,7 +29,7 @@ internal fun Media.toUiModel(): MediaUiModel {
             id = id,
             type = MediaType.IMAGE,
             thumbnail = previewURL,
-            isFavorite = false,
+            isFavorite = isFavorite,
             videoUrl = null
         )
         else -> {

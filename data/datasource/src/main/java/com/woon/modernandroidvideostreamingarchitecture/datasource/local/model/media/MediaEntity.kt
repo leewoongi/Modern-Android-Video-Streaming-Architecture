@@ -2,11 +2,18 @@ package com.woon.modernandroidvideostreamingarchitecture.datasource.local.model.
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.google.gson.Gson
+import com.woon.modernandroidvideostreamingarchitecture.domain.image.model.Image
+import com.woon.modernandroidvideostreamingarchitecture.domain.media.model.Media
+import com.woon.modernandroidvideostreamingarchitecture.domain.video.model.Video
+import com.woon.modernandroidvideostreamingarchitecture.domain.video.model.VideoFiles
 
 /**
  * Video와 Image를 통합 관리하는 Single Table 설계
  * RemoteMediator와 Paging3를 위한 최적화된 구조
  */
+private val gson = Gson()
+
 @Entity(tableName = "media")
 data class MediaEntity(
     @PrimaryKey
@@ -43,5 +50,52 @@ data class MediaEntity(
 
     // ========== RemoteMediator 메타데이터 ==========
     val page: Int,                      // 현재 페이지 번호
-    val insertedAt: Long = System.currentTimeMillis()  // 삽입 순서 유지
-)
+    val insertedAt: Long = System.currentTimeMillis(),  // 삽입 순서 유지
+) {
+    fun toDomain(): Media {
+        return when (mediaType) {
+            "VIDEO" -> Video(
+                id = id,
+                pageUrl = pageUrl,
+                type = mediaType,
+                tags = tags.split(","),
+                duration = duration ?: 0,
+                videos = videoFilesJson?.let { gson.fromJson(it, VideoFiles::class.java) }
+                    ?: VideoFiles(null, null, null, null),
+                views = views,
+                downloads = downloads,
+                likes = likes,
+                comments = comments,
+                userId = userId,
+                userName = userName,
+                userImageUrl = userImageUrl,
+            )
+
+            "IMAGE" -> Image(
+                id = id,
+                pageUrl = pageUrl,
+                type = mediaType,
+                tags = tags.split(","),
+                previewURL = previewUrl ?: "",
+                previewWidth = previewWidth ?: 0,
+                previewHeight = previewHeight ?: 0,
+                webformatURL = webformatUrl ?: "",
+                webformatWidth = webformatWidth ?: 0,
+                webformatHeight = webformatHeight ?: 0,
+                largeImageURL = largeImageUrl ?: "",
+                imageWidth = imageWidth ?: 0,
+                imageHeight = imageHeight ?: 0,
+                imageSize = imageSize ?: 0,
+                views = views,
+                downloads = downloads,
+                likes = likes,
+                comments = comments,
+                userId = userId,
+                userName = userName,
+                userImageUrl = userImageUrl,
+            )
+
+            else -> throw IllegalArgumentException("Unknown media type: $mediaType")
+        }
+    }
+}

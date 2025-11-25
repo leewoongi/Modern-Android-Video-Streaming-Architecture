@@ -1,6 +1,7 @@
 package com.woon.modernandroidvideostreamingarchitecture.datasource.remote.model.image
 
 import com.google.gson.annotations.SerializedName
+import com.woon.modernandroidvideostreamingarchitecture.domain.image.model.Image
 
 data class ImageDto(
     @SerializedName("id")
@@ -45,4 +46,30 @@ data class ImageDto(
     val user: String,
     @SerializedName("userImageURL")
     val userImageURL: String
-)
+) {
+    fun toDomain(): Image {
+        return Image(
+            id = id,
+            pageUrl = pageURL,
+            type = type,
+            tags = tags.split(",").map { it.trim() },
+            previewURL = previewURL,
+            previewWidth = previewWidth,
+            previewHeight = previewHeight,
+            webformatURL = webformatURL,
+            webformatWidth = webformatWidth,
+            webformatHeight = webformatHeight,
+            largeImageURL = largeImageURL,
+            imageWidth = imageWidth,
+            imageHeight = imageHeight,
+            imageSize = imageSize,
+            views = views,
+            downloads = downloads,
+            likes = likes,
+            comments = comments,
+            userId = userId,
+            userName = user,
+            userImageUrl = userImageURL,
+        )
+    }
+}

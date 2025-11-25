@@ -2,8 +2,10 @@ package com.woon.modernandroidvideostreamingarchitecture.datasource.local.databa
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
+import com.woon.modernandroidvideostreamingarchitecture.datasource.local.dao.FavoriteDao
 import com.woon.modernandroidvideostreamingarchitecture.datasource.local.dao.MediaDao
 import com.woon.modernandroidvideostreamingarchitecture.datasource.local.dao.MediaRemoteKeyDao
+import com.woon.modernandroidvideostreamingarchitecture.datasource.local.model.favorite.FavoriteEntity
 import com.woon.modernandroidvideostreamingarchitecture.datasource.local.model.media.MediaEntity
 import com.woon.modernandroidvideostreamingarchitecture.datasource.local.model.media.MediaRemoteKey
 
@@ -11,6 +13,7 @@ import com.woon.modernandroidvideostreamingarchitecture.datasource.local.model.m
     entities = [
         MediaEntity::class,
         MediaRemoteKey::class,
+        FavoriteEntity::class
     ],
     version = 1,
     exportSchema = true
@@ -18,6 +21,7 @@ import com.woon.modernandroidvideostreamingarchitecture.datasource.local.model.m
 abstract class AppDatabase : RoomDatabase() {
     abstract fun mediaDao(): MediaDao
     abstract fun mediaRemoteKeysDao(): MediaRemoteKeyDao
+    abstract fun favoriteDao(): FavoriteDao
 
     companion object {
         const val DATABASE_NAME = "mvs_database"

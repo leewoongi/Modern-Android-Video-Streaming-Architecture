@@ -7,11 +7,11 @@ import com.woon.modernandroidvideostreamingarchitecture.domain.media.model.Media
 import com.woon.modernandroidvideostreamingarchitecture.domain.video.model.Video
 import com.woon.modernandroidvideostreamingarchitecture.domain.video.model.VideoFiles
 
-private val gson = Gson()
 
 /**
  * Domain Media -> Entity 변환
  */
+private val gson = Gson()
 fun Media.toEntity(query: String, page: Int): MediaEntity {
     return when (this) {
         is Video -> MediaEntity(
@@ -77,55 +77,5 @@ fun Media.toEntity(query: String, page: Int): MediaEntity {
         )
 
         else -> throw IllegalArgumentException("Unknown media type: ${this}")
-    }
-}
-
-/**
- * Entity -> Domain Media 변환
- */
-fun MediaEntity.toDomain(): Media {
-    return when (mediaType) {
-        "VIDEO" -> Video(
-            id = id,
-            pageUrl = pageUrl,
-            type = mediaType,
-            tags = tags.split(","),
-            duration = duration ?: 0,
-            videos = videoFilesJson?.let { gson.fromJson(it, VideoFiles::class.java) }
-                ?: VideoFiles(null, null, null, null),
-            views = views,
-            downloads = downloads,
-            likes = likes,
-            comments = comments,
-            userId = userId,
-            userName = userName,
-            userImageUrl = userImageUrl
-        )
-
-        "IMAGE" -> Image(
-            id = id,
-            pageUrl = pageUrl,
-            type = mediaType,
-            tags = tags.split(","),
-            previewURL = previewUrl ?: "",
-            previewWidth = previewWidth ?: 0,
-            previewHeight = previewHeight ?: 0,
-            webformatURL = webformatUrl ?: "",
-            webformatWidth = webformatWidth ?: 0,
-            webformatHeight = webformatHeight ?: 0,
-            largeImageURL = largeImageUrl ?: "",
-            imageWidth = imageWidth ?: 0,
-            imageHeight = imageHeight ?: 0,
-            imageSize = imageSize ?: 0,
-            views = views,
-            downloads = downloads,
-            likes = likes,
-            comments = comments,
-            userId = userId,
-            userName = userName,
-            userImageUrl = userImageUrl
-        )
-
-        else -> throw IllegalArgumentException("Unknown media type: $mediaType")
     }
 }

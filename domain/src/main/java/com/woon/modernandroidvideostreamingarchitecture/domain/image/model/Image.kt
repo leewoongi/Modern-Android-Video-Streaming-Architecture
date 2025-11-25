@@ -23,5 +23,5 @@ data class Image(
     override val comments: Int,
     override val userId: Long,
     override val userName: String,
-    override val userImageUrl: String
+    override val userImageUrl: String,
 ) : Media()

@@ -1,25 +1,17 @@
 package com.woon.modernandroidvideostreamingarchitecture.home.screen
 
-import androidx.compose.foundation.gestures.snapping.rememberSnapFlingBehavior
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyGridState
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.itemContentType
 import androidx.paging.compose.itemKey
@@ -31,7 +23,6 @@ import com.woon.modernandroidvideostreamingarchitecture.core.design.component.pa
 import com.woon.modernandroidvideostreamingarchitecture.core.design.component.paging.PagingRefreshStateItem
 import com.woon.modernandroidvideostreamingarchitecture.domain.media.model.MediaType
 import com.woon.modernandroidvideostreamingarchitecture.home.model.MediaUiModel
-import kotlin.text.get
 
 private const val VIDEO_ASPECT_RATIO = 16f / 9f
 private const val IMAGE_ASPECT_RATIO = 1f
@@ -41,8 +32,8 @@ fun HomeMediaListScreen(
     modifier: Modifier = Modifier,
     media: LazyPagingItems<MediaUiModel>,
     state: LazyGridState,
-    onClickItem: (Long, MediaType) -> Unit = { _, _ -> },
-    onFavoriteClick: (Long) -> Unit = {}
+    onClickItem: (MediaUiModel) -> Unit,
+    onFavoriteClick: (MediaUiModel) -> Unit,
 ) {
     PagingRefreshStateItem(
         items = media,
@@ -70,7 +61,7 @@ fun HomeMediaListScreen(
                         }
                     },
                     contentType = items.itemContentType {
-                        when(it.type) {
+                        when (it.type) {
                             MediaType.VIDEO -> "video"
                             MediaType.IMAGE -> "image"
                         }
@@ -81,9 +72,9 @@ fun HomeMediaListScreen(
                         MvsCard(
                             imageUrl = item.thumbnail,
                             contentDescription = "Media ${item.id}",
-                            isFavorite = item.isFavorite,
-                            onFavoriteClick = { onFavoriteClick(item.id) },
-                            onClick = { onClickItem(item.id, item.type) },
+                            isToggled = item.isFavorite,
+                            onIconClick = { onFavoriteClick(item) },
+                            onClick = { onClickItem(item) },
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .aspectRatio(if (item.type == MediaType.VIDEO) VIDEO_ASPECT_RATIO else IMAGE_ASPECT_RATIO)

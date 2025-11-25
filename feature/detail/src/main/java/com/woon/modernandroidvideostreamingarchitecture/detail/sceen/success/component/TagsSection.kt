@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.woon.modernandroidvideostreamingarchitecture.core.design.theme.theme.CustomTheme
 
 @Composable
 fun TagsSection(
@@ -24,7 +25,8 @@ fun TagsSection(
         Text(
             text = "Tags",
             style = MaterialTheme.typography.titleMedium,
-            fontWeight = FontWeight.Bold
+            fontWeight = FontWeight.Bold,
+            color = CustomTheme.colors.onBackground
         )
         LazyRow(
             horizontalArrangement = Arrangement.spacedBy(8.dp)
@@ -32,7 +34,8 @@ fun TagsSection(
             items(tags.size) { index ->
                 Text(
                     text = tags[index],
-                    style = MaterialTheme.typography.bodySmall
+                    style = MaterialTheme.typography.bodySmall,
+                    color = CustomTheme.colors.onSurfaceVariant
                 )
             }
         }

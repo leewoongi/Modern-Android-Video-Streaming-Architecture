@@ -5,3 +5,7 @@ plugins {
 android {
     namespace = "com.woon.modernandroidvideostreamingarchitecture.detail"
 }
+
+dependencies {
+    implementation(project(":player"))
+}

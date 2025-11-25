@@ -22,6 +22,7 @@ import com.woon.modernandroidvideostreamingarchitecture.detail.sceen.success.com
 import com.woon.modernandroidvideostreamingarchitecture.detail.sceen.success.component.UserInfoCard
 import com.woon.modernandroidvideostreamingarchitecture.detail.sceen.success.layout.MediaHeaderScreen
 import com.woon.modernandroidvideostreamingarchitecture.domain.media.model.MediaType
+import com.woon.modernandroidvideostreamingarchitecture.player.VideoPlayer
 
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
@@ -50,7 +51,10 @@ fun SuccessScreen(
                     }
 
                     MediaType.VIDEO -> {
-                        // TODO: Video player implementation
+                        VideoPlayer(
+                            modifier = Modifier.fillMaxSize(),
+                            videoUrl = media.mediaUrl
+                        )
                     }
                 }
             },
@@ -72,12 +76,8 @@ fun SuccessScreen(
             MediaInfoCard(
                 title = "${media.type.value} #${media.id}",
                 subtitle = when (media.type) {
-                    MediaType.VIDEO -> {
-                        "Duration: ${media.duration}s"
-                    }
-                    else -> {
-                        "${media.width} × ${media.height}"
-                    }
+                    MediaType.VIDEO -> { "Duration: ${media.duration}s" }
+                    else -> { "${media.width} × ${media.height}" }
                 }
             )
 

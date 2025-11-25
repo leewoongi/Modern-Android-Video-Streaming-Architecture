@@ -20,6 +20,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
+import com.woon.modernandroidvideostreamingarchitecture.core.design.theme.theme.CustomTheme
 
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
@@ -32,7 +33,7 @@ fun UserInfoCard(
     Card(
         modifier = modifier.fillMaxWidth(),
         colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.surface
+            containerColor = CustomTheme.colors.surface
         )
     ) {
         Row(
@@ -55,12 +56,13 @@ fun UserInfoCard(
                 Text(
                     text = userName,
                     style = MaterialTheme.typography.titleSmall,
-                    fontWeight = FontWeight.Medium
+                    fontWeight = FontWeight.Medium,
+                    color = CustomTheme.colors.onSurface
                 )
                 Text(
                     text = userRole,
                     style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                    color = CustomTheme.colors.onSurfaceVariant
                 )
             }
         }

@@ -3,11 +3,11 @@ package com.woon.modernandroidvideostreamingarchitecture.detail
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.woon.modernandroidvideostreamingarchitecture.core.design.theme.theme.CustomTheme
 import com.woon.modernandroidvideostreamingarchitecture.detail.model.DetailUiState
 import com.woon.modernandroidvideostreamingarchitecture.detail.sceen.error.ErrorScreen
 import com.woon.modernandroidvideostreamingarchitecture.detail.sceen.loading.LoadingScreen
@@ -39,7 +39,7 @@ fun DetailScreen(
             SuccessScreen(
                 modifier = Modifier
                     .fillMaxSize()
-                    .background(MaterialTheme.colorScheme.background),
+                    .background(CustomTheme.colors.background),
                 media = media,
                 scrollState = scrollState
             )

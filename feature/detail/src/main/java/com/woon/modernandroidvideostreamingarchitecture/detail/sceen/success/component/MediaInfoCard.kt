@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.woon.modernandroidvideostreamingarchitecture.core.design.theme.theme.CustomTheme
 
 @Composable
 fun MediaInfoCard(
@@ -22,7 +23,7 @@ fun MediaInfoCard(
     Card(
         modifier = modifier.fillMaxWidth(),
         colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.surface
+            containerColor = CustomTheme.colors.surface
         )
     ) {
         Column(
@@ -32,12 +33,13 @@ fun MediaInfoCard(
             Text(
                 text = title,
                 style = MaterialTheme.typography.titleMedium,
-                fontWeight = FontWeight.Bold
+                fontWeight = FontWeight.Bold,
+                color = CustomTheme.colors.onSurface
             )
             Text(
                 text = subtitle,
                 style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onSurfaceVariant
+                color = CustomTheme.colors.onSurfaceVariant
             )
         }
     }

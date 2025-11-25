@@ -23,6 +23,7 @@ dependencyResolutionManagement {
 rootProject.name = "ModernAndroidVideoStreamingArchitecture"
 include(":app")
 include(":core")
+include(":player")
 include(":data:datasource")
 include(":data:repository")
 include(":domain")

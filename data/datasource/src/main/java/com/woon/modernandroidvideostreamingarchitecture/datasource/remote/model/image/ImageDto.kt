@@ -70,6 +70,7 @@ data class ImageDto(
             userId = userId,
             userName = user,
             userImageUrl = userImageURL,
+            favorite = false
         )
     }
 }

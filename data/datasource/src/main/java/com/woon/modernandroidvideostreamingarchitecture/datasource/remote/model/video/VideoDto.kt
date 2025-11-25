@@ -55,6 +55,7 @@ data class VideoDto(
             userId = userId,
             userName = user,
             userImageUrl = userImageUrl,
+            favorite = false
         )
     }
 }

@@ -5,6 +5,7 @@ import androidx.room.withTransaction
 import com.woon.modernandroidvideostreamingarchitecture.datasource.local.database.AppDatabase
 import com.woon.modernandroidvideostreamingarchitecture.datasource.local.model.media.MediaEntity
 import com.woon.modernandroidvideostreamingarchitecture.datasource.local.model.media.MediaRemoteKey
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class MediaLocalDataSource
@@ -19,6 +20,13 @@ class MediaLocalDataSource
      */
     fun pagingSource(query: String): PagingSource<Int, MediaEntity> {
         return mediaDao.pagingSource(query)
+    }
+
+    /**
+     * flow
+     */
+    fun get(query: String) : Flow<List<MediaEntity>> {
+        return mediaDao.get(query)
     }
 
     /**

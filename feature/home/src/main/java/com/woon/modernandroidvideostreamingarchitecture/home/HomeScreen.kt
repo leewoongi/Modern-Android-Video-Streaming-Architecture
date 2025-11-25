@@ -29,12 +29,11 @@ import com.woon.modernandroidvideostreamingarchitecture.home.screen.HomeSearchSc
 fun HomeScreen(
 
 ) {
-    val viewmodel = hiltViewModel<HomeViewModel>()
+    val viewModel = hiltViewModel<HomeViewModel>()
     val gridState = rememberLazyGridState()
 
-    val query by viewmodel.query.collectAsStateWithLifecycle()
-    val media = viewmodel.media.collectAsLazyPagingItems()
-
+    val query by viewModel.query.collectAsStateWithLifecycle()
+    val media = viewModel.media.collectAsLazyPagingItems()
 
     Column(
         modifier = Modifier
@@ -47,7 +46,7 @@ fun HomeScreen(
                 .fillMaxWidth(),
             query = query,
             onSearch = {
-                viewmodel.processIntent(HomeIntent.Search(it))
+                viewModel.processIntent(HomeIntent.Search(it))
             }
         )
 
@@ -63,7 +62,7 @@ fun HomeScreen(
                     media = items,
                     state = gridState,
                     onClickItem = { /**디테일 화면 이동*/ },
-                    onFavoriteClick = { viewmodel.processIntent(HomeIntent.OnClickFavorite(it)) }
+                    onFavoriteClick = { viewModel.processIntent(HomeIntent.OnClickFavorite(it)) }
                 )
             }
         )

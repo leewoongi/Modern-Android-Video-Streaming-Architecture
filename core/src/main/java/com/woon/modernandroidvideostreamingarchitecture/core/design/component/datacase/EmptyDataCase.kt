@@ -18,7 +18,7 @@ fun EmptyDataCase(
     message: String,
 ){
     Box(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .height(200.dp),
         contentAlignment = Alignment.Center

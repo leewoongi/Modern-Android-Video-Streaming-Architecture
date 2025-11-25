@@ -69,6 +69,7 @@ data class MediaEntity(
                 userId = userId,
                 userName = userName,
                 userImageUrl = userImageUrl,
+                favorite = false
             )
 
             "IMAGE" -> Image(
@@ -93,6 +94,7 @@ data class MediaEntity(
                 userId = userId,
                 userName = userName,
                 userImageUrl = userImageUrl,
+                favorite = false
             )
 
             else -> throw IllegalArgumentException("Unknown media type: $mediaType")

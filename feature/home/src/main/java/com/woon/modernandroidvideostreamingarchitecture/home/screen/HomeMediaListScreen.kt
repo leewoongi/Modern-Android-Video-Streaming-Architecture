@@ -75,6 +75,7 @@ fun HomeMediaListScreen(
                             isToggled = item.isFavorite,
                             onIconClick = { onFavoriteClick(item) },
                             onClick = { onClickItem(item) },
+                            isVideo = item.type == MediaType.VIDEO,
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .aspectRatio(if (item.type == MediaType.VIDEO) VIDEO_ASPECT_RATIO else IMAGE_ASPECT_RATIO)

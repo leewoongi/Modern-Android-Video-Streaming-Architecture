@@ -12,4 +12,5 @@ abstract class Media {
     abstract val userId: Long
     abstract val userName: String
     abstract val userImageUrl: String
+    abstract val favorite: Boolean
 }

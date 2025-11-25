@@ -3,6 +3,7 @@ package com.woon.modernandroidvideostreamingarchitecture.domain.media
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import androidx.paging.map
+import com.woon.modernandroidvideostreamingarchitecture.domain.favorite.GetFavoriteUseCase
 import com.woon.modernandroidvideostreamingarchitecture.domain.favorite.repository.FavoriteRepository
 import com.woon.modernandroidvideostreamingarchitecture.domain.image.model.Image
 import com.woon.modernandroidvideostreamingarchitecture.domain.media.model.Media
@@ -21,6 +22,6 @@ class GetMediaUseCase
     suspend operator fun invoke(
         query: String
     ) : Flow<PagingData<Media>> {
-        return mediaRepository.get(query = query)
+        return mediaRepository.getPagingSource(query = query)
     }
 }

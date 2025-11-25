@@ -16,4 +16,5 @@ data class Video(
     override val userId: Long,
     override val userName: String,
     override val userImageUrl: String,
+    override val favorite: Boolean
 ) : Media()

@@ -9,6 +9,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.woon.modernandroidvideostreamingarchitecture.core.localprovider.LocalNavController
+import com.woon.modernandroidvideostreamingarchitecture.favorite.FavoriteScreen
 import com.woon.modernandroidvideostreamingarchitecture.home.HomeScreen
 
 @Composable
@@ -33,7 +34,7 @@ fun NavigationGraph(
             composable(
                 route = "favorite",
             ) {
-//                FavoritesScreen()
+                FavoriteScreen()
             }
 
             composable(

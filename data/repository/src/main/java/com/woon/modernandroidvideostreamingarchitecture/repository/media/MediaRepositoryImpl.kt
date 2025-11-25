@@ -21,7 +21,7 @@ class MediaRepositoryImpl
 ): MediaRepository {
 
     @OptIn(ExperimentalPagingApi::class)
-    override suspend fun get(query: String): Flow<PagingData<Media>> {
+    override suspend fun getPagingSource(query: String): Flow<PagingData<Media>> {
         return Pager(
             config = PagingConfig(
                 pageSize = 20,
@@ -41,6 +41,12 @@ class MediaRepositoryImpl
             pagingData.map { entity ->
                 entity.toDomain()
             }
+        }
+    }
+
+    override fun get(query: String): Flow<List<Media>> {
+        return localDataSource.get(query).map { entities ->
+            entities.map { it.toDomain() }
         }
     }
 }

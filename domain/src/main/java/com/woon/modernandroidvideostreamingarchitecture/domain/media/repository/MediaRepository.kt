@@ -5,5 +5,6 @@ import com.woon.modernandroidvideostreamingarchitecture.domain.media.model.Media
 import kotlinx.coroutines.flow.Flow
 
 interface MediaRepository {
-    suspend fun get(query: String) : Flow<PagingData<Media>>
+    suspend fun getPagingSource(query: String) : Flow<PagingData<Media>>
+    fun get(query: String): Flow<List<Media>>
 }

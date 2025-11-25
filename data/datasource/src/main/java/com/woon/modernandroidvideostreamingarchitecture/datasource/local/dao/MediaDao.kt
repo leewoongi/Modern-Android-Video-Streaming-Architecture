@@ -6,6 +6,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.woon.modernandroidvideostreamingarchitecture.datasource.local.model.media.MediaEntity
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface MediaDao {
@@ -15,6 +16,12 @@ interface MediaDao {
      */
     @Query("SELECT * FROM media WHERE `query` = :query ORDER BY insertedAt ASC")
     fun pagingSource(query: String): PagingSource<Int, MediaEntity>
+
+    /**
+     * Flow for Room
+     */
+    @Query("SELECT * FROM media WHERE `query` = :query ORDER BY insertedAt ASC")
+    fun get(query: String): Flow<List<MediaEntity>>
 
     /**
      * Insert media list (RemoteMediator에서 사용)

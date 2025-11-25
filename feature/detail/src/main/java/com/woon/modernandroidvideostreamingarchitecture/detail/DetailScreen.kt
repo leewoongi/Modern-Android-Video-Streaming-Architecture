@@ -8,6 +8,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.woon.modernandroidvideostreamingarchitecture.core.design.theme.theme.CustomTheme
+import com.woon.modernandroidvideostreamingarchitecture.detail.intent.DetailIntent
 import com.woon.modernandroidvideostreamingarchitecture.detail.model.DetailUiState
 import com.woon.modernandroidvideostreamingarchitecture.detail.sceen.error.ErrorScreen
 import com.woon.modernandroidvideostreamingarchitecture.detail.sceen.loading.LoadingScreen
@@ -41,7 +42,8 @@ fun DetailScreen(
                     .fillMaxSize()
                     .background(CustomTheme.colors.background),
                 media = media,
-                scrollState = scrollState
+                scrollState = scrollState,
+                onIconClick = { viewModel.processIntent(DetailIntent.OnClickFavorite(it))}
             )
         }
     }

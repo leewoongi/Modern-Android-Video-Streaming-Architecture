@@ -30,6 +30,7 @@ fun SuccessScreen(
     modifier: Modifier,
     media: MediaUiModel,
     scrollState: ScrollState,
+    onIconClick: (MediaUiModel) -> Unit = {}
 ) {
     Column(
         modifier = modifier
@@ -59,8 +60,7 @@ fun SuccessScreen(
                 }
             },
             isToggled = media.isFavorite,
-            onIconClick = {},
-            onFavoriteClick = {}
+            onIconClick = { onIconClick(media) },
         )
 
         Column(

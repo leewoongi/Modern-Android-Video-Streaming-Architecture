@@ -32,6 +32,12 @@ jobs:
       # 거의 모든 workflow 첫 번째 step이 checkout
       - uses: actions/checkout@v4
 
+      # "GitHub Secrets에 저장한 값"
+      # echo 내용을 출력해
+      # Runner는 빈 컴퓨터라서 local.properties가 없거든요. 그래서 매번 만들어주는 거예요.
+      - name: Create local.properties
+        run: echo '${{ secrets.LOCAL_PROPERTIES }}' > ./local.properties
+
       # "gradlew 파일을 실행할 수 있게 해줘"
       - name: Grant execute permission
         run: chmod +x ./gradlew

@@ -32,6 +32,10 @@ jobs:
       # 거의 모든 workflow 첫 번째 step이 checkout
       - uses: actions/checkout@v4
 
+      # "gradlew 파일을 실행할 수 있게 해줘"
+      - name: Grant execute permission
+        run: chmod +x ./gradlew
+
       # name: step의 이름 (GitHub Actions에서 보여요)
       # run: 실행할 명령어
       - name: Build Debug APK

@@ -47,3 +47,13 @@ jobs:
       - name: Build Debug APK
         run: ./gradlew assembleDebug
         
+      # name: step의 이름 (GitHub Actions에서 보여요)
+      # run: GitHub에서 만든 업로드 도구 사용하겠다는 거예요. 빌드 결과물을 GitHub에 저장해줘요
+      # with: 이 도구에 넘길 설정들이에요.
+        #name : 업로드할 파일 묶음 이름이에요. GitHub에서 다운받을 때 이 이름으로 보여요.
+        #path : 어떤 파일을 업로드할지 경로예요. *.apk는 "apk로 끝나는 파일 전부"라는 뜻이에요.
+      - name: Upload APK
+        run: actions/upload-artifact@v4
+        with:
+          name: debug-apk
+          path: app/build/outputs/apk/debug/*.apk
